@@ -1,6 +1,48 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body></body>
+    <head>
+        <title>Special Tetris Game</title>
+        <link href="MainStyle.css" rel="stylesheet" type="text/css">
+        <link href="Responsive.css" rel="stylesheet" type="text/css">
+        <meta name="viewport" content="width=device-width, initial-scale=1" >
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+
+    <body onload="Main()">
+
+        <!--Script Goes here-->
+        <script>
+            function Main()
+            {
+
+            }
+        </script>
+        <!--Script Ends here-->
+
+        <div id="Game">
+            <div id = "Board1" class = "GameDataBoard">
+                <p>Next Block Dropping:</p>
+                <p>Score: 20000</p>
+            </div>
+            <div id = "GameArea">
+                <div id="BorderLine"></div>
+                <div id="BaseGround">
+                    <!-- BaseGroundUnit are Just White BorderLines that lets the player know the coordinate-->
+                    <div class="BaseGroundUnit"></div>
+                    <div class="BaseGroundUnit"></div>
+                    <div class="BaseGroundUnit"></div>
+                    <div class="BaseGroundUnit"></div>
+                    <div class="BaseGroundUnit"></div>
+                    <div class="BaseGroundUnit"></div>
+                    <div class="BaseGroundUnit"></div>
+                    <div class="BaseGroundUnit"></div>
+                </div>
+            </div>
+            <div id="Board2" class = "GameDataBoard"></div>
+        </div>
+
+        
+    </body>
+
 </html>
 

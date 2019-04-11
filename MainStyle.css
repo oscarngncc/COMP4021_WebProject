@@ -1,0 +1,126 @@
+*
+{
+    /*Unless Specified, all elements should have 0 margin and padding*/
+    margin:0;
+    padding:0;
+}
+
+html
+{
+    /*Base font-size for rem, 1 rem = 8px */
+    font-size: 8px;
+}
+
+body
+{
+    background-color: lightblue;
+    text-align:center;
+}
+
+#Game
+{
+    /*Putting everything in the middle of the browser*/
+    display: inline-block;
+}
+
+.GameDataBoard
+{    
+    /*Position*/
+    position: relative;
+    float:left;
+    
+    /*Dimension*/
+    height: 65rem;
+    width: 30rem;
+    margin: 1rem;
+
+    /*Aesthetics*/
+    background: radial-gradient(burlywood, lightsalmon);
+    border-radius: 1.5rem;
+    border: solid white 1rem;
+}
+
+p
+{
+    /* Position */
+    position: relative;
+
+    /* Dimension */
+    font-size: 2.5rem;
+    margin: 1rem;
+
+    /*Aesthetics*/
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#GameArea
+{
+    /*Position*/
+    position: relative;
+    float: left;
+    text-align:center;
+    
+
+    /*Dimension*/
+    height: 65rem;
+    width: 80rem;
+    margin: 1rem 0rem;
+    
+
+    /*Aesthetics*/
+    background: rgba(0,0,200,0.2);
+}
+
+#BorderLine
+{
+    /*Position*/
+    display: inline-block;
+    position: relative;
+    top:4rem;
+
+    /*Dimension*/
+    height:0.5rem;
+    width:80rem;
+
+    /*Aesthetics*/
+    background-color:white;
+}
+
+#BaseGround
+{
+    /*Position*/
+    display: inline-block;
+    position: relative;
+    top: 55rem;
+    
+    
+    /*Dimension*/
+    height:5rem;
+    width:40rem;
+
+    /*Aesthetics*/
+    background: brown;
+}
+
+
+.BaseGroundUnit
+{
+    /*Position*/
+    float:left;
+
+    /*Dimension*/
+    height:4.5rem;
+    width:4.5rem;
+
+    /*Aesthetics*/
+    background: transparent;
+    border: solid white 0.25rem;
+}
+
+
+
+
+
+
