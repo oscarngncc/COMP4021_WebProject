@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Special Tetris Game</title>
+        <meta charset="utf-8"/>
         <link href="MainStyle.css" rel="stylesheet" type="text/css">
         <link href="Responsive.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1" >
@@ -9,13 +10,159 @@
     </head>
 
     <body onload="Main()">
-
         <!--Script Goes here-->
+        <script src ="TetrisBlock.js"></script>
         <script>
+            /* true if the block player previously controlled drops to the bottom*/
+            var isSettled = true;
+            /* Current Position of the User-Controlled TetrisBlock, based on Canvas*/
+            var xPos = 0; 
+            var yPos = 0;
+            /* 10 x 8 2-Dimensional Integer Matrix Canvas ( 1 means block is inside; 0 otherwise) */
+            var Canvas = new Array(10);
+            for ( var i = 0; i < 10; i++)
+            {
+                var Canvas_Col = new Array(8);
+                for ( var j = 0; j < 8; j++ )
+                {
+                    Canvas_Col[j] = 0;
+                }
+                Canvas[i] = Canvas_Col;
+            }
+            
+
+            function CreateBlock()
+            {
+                if ( isSettled )
+                {
+                    /* Index of Row Position, randomly of either 0-7th row */
+                    xPos = 0;
+                    yPos = Math.floor( Math.random() * 8 );
+                    Canvas[0][yPos] = 1;
+                    isSettled = false; 
+                    return true;
+                }              
+                return false;
+            }
+
+
+            function BlocksFall()
+            {
+                if ( xPos > 8 )
+                {
+                    isSettled = true;
+                    return;
+                }
+                if ( Canvas[xPos+1][yPos] == 0 && Canvas[xPos][yPos] == 1 && isSettled == false )
+                {
+                    Canvas[xPos][yPos] = 0;
+                    Canvas[++xPos][yPos] = 1;
+                }
+                else
+                {
+                    isSettled = true;
+                }
+            }
+
+            function CheckGameCondition()
+            {
+                /*Remove the Row if it is filled*/
+                for ( var i = 9; i >= 0; i-- )
+                {
+                    var AllFilled = true;
+                    for ( var j = 0; j < 8; j++ )
+                    {
+                        if ( Canvas[i][j] == 0 ){ AllFilled = false; }
+                    }
+                    //When a Row is filled, remove that row and update any other element
+                    if ( AllFilled ) 
+                    {
+                        
+                    }
+                }
+            }
+
+            function UpdateGameArea()
+            {
+                /*Update The GameArea*/
+                var HasCreateBlock = CreateBlock();
+
+                var GameArea = document.getElementById("GameArea");
+                var TetrisBlocks = document.getElementsByClassName("TetrisBlock");
+                
+                if ( HasCreateBlock )
+                {
+                    if ( $(".UserControlBlock")[0] )
+                    {
+                        //Previous UserControlBlock is no longer user-controllable
+                        $(".UserControlBlock").each( function(){
+                            $(this).attr("class", "TetrisBlock");
+                        });
+                    }
+                    //Now the newly block will be labelled as user controllable
+                    var block = document.createElement("div");
+                    block.setAttribute("class", "TetrisBlock UserControlBlock");
+                    block.style.top = (5 + xPos*5).toString() + "rem"; 
+                    block.style.left = (0 + yPos*5 + 20 ).toString() + "rem";
+                    GameArea.appendChild(block); 
+                }
+                else
+                {
+                    //No Block is Created, meaning that user-controllable block falls
+                    $(".UserControlBlock").each( function(){
+                        $(this).css("top", (5 + xPos*5).toString() + "rem");
+                        $(this).css("left", (0 + yPos*5 + 20 ).toString() + "rem"); 
+                    });
+                }
+            }
+
+
+            /*Function Called for each timer iteration, Bascially Sum up everything*/
+            function IterationFunc()
+            {
+                BlocksFall();
+                CheckGameCondition();
+                UpdateGameArea();
+                setTimeout(IterationFunc, 500);
+            }
+
+
             function Main()
             {
+                var IterationTimer = setTimeout(IterationFunc, 500);
 
+                //When User Press the button
+                $(document).on("keydown", function(e){
+                    if ( e.keyCode == 37 )  //Press Left
+                    {
+                        if ( yPos > 0 && Canvas[xPos][yPos] == 1 && Canvas[xPos][yPos-1] == 0 && isSettled == false )
+                        {
+                            Canvas[xPos][yPos] = 0;
+                            Canvas[xPos][--yPos] = 1;
+                            UpdateGameArea();
+                        }
+                    }
+                    else if ( e.keyCode == 39 ) //Press Right
+                    {
+                        if ( yPos < 7 && Canvas[xPos][yPos] == 1 && Canvas[xPos][yPos+1] == 0 && isSettled == false )
+                        {
+                            Canvas[xPos][yPos] = 0;
+                            Canvas[xPos][++yPos] = 1;
+                            UpdateGameArea();
+                        }
+                    }
+                    else if ( e.keyCode == 38 ) //Press Up, Change Direction
+                    {
+
+                    }
+                    else if ( e.keyCode == 40 ) //Press Down, //Increase DownSpeed
+                    {
+                        BlocksFall();
+                        UpdateGameArea();
+                    }
+                });
             }
+
         </script>
         <!--Script Ends here-->
 
