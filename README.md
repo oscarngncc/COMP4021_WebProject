@@ -26,6 +26,7 @@ Some Details Explaination:
 
 
 Functions Explaination:
+
 **CanvasMoveBlock**: Function that allows movement of the User-Controllablle Block to move either top/left/right/bottom. Parameters:
                      Dimension:  an integer which is 0 for moving along x-dimension, otherwise for moving y-dimesion
                      Distance: How much block Distance it is going to move. ( Can be -1, which makes block move top/left )
