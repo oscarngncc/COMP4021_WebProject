@@ -20,6 +20,7 @@ else
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="TetrisBlock.js"></script>
         <script src="BasicTetris.js"></script>
+        <script src="SpecialTetris.js"></script>
     </head>
 
     <body onload="Main()">
@@ -42,11 +43,16 @@ else
                 });
             }
 
+            function ChangeMode()
+            {
+                alert("JOJO");
+            }
+
             /*Function Called for each timer iteration, Bascially Sum up everything*/
             function IterationFunc()
             {
-                
-                CanvasMoveBlock( 0, 1 ); //User-Controlled Block will drop each time interval
+                CanvasMoveBlock( 0, 1 ); //User-Controlled Block will drop each time interval                
+                Boom();
                 CheckRowCondition();
                 
                 //Check GameOver                
@@ -79,7 +85,7 @@ else
                         return;
                     }
                 }
-
+                
                 CreateBlock();
                 Timer = setTimeout(IterationFunc, 500);
             }
@@ -90,20 +96,40 @@ else
         <div id="Game">
             <div id = "Board1" class = "GameDataBoard">
                 <p>Next Block Dropping:</p>
+                <div id="NextBlockDiv">
+                    <div class="TetrisBlock" style="display: none; top:1rem; left: 1rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:1rem; left: 6rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:1rem; left: 11rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:1rem; left: 16rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:6rem; left: 1rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:6rem; left: 6rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:6rem; left: 11rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:6rem; left: 16rem;"></div>  
+                    <div class="TetrisBlock" style="display: none; top:11rem; left: 1rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:11rem; left: 6rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:11rem; left: 11rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:11rem; left: 16rem;"></div>  
+                    <div class="TetrisBlock" style="display: none; top:16rem; left: 1rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:16rem; left: 6rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:16rem; left: 11rem;"></div>
+                    <div class="TetrisBlock" style="display: none; top:16rem; left: 16rem;"></div>                        
+                </div>
                 <p>Score: <span id="score">0</span></p>
-                <p>Highest Score:<BR><span id="hscore"><?=
+                <p style="color:yellow;">Highest Score:<BR><span id="hscore"><?=
                 $_COOKIE["highestScore"]; ?></span><span id="hname">
                 <?php if(isset($_COOKIE['hname'])){echo "by ".$_COOKIE['hname'];} ?>   
                 </span></p>
             </div>
             <div id = "GameArea">
                 <div id="BorderLine"></div>
-                <div id="BaseGround">
-                    <!-- BaseGroundUnit are Just White BorderLines that lets the player know the coordinate-->
-            
+                <div id="BaseGround">            
                 </div>
             </div>
-            <div id="Board2" class = "GameDataBoard"></div>
+            <div id="Board2" class = "GameDataBoard">
+                <p>You are Now Playing</p>
+                <p id="CurrentMode" style="color:yellow; font-size: 4rem;">Normal Mode</p>
+                <button id="ModeButton" onclick="ChangeMode()">Toggle Mode</button>
+            </div>
         </div>
 
         

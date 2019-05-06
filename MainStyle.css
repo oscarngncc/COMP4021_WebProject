@@ -58,6 +58,21 @@ p
     font-family: Arial, Helvetica, sans-serif;
 }
 
+#NextBlockDiv
+{
+    /*Position*/
+    position: relative;
+    left: 4rem;
+
+    /* Dimension */
+    width: 22rem;
+    height: 22rem;
+
+    /*Aesthetics*/
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 1rem;
+}
+
 #GameArea
 {
     /*Position*/
@@ -140,6 +155,7 @@ p
 
     /*Aesthetics*/
     background: red;
+    background-size: 100% 100%;
     border: solid white 0.1rem;
     border-radius: 7px;
 
@@ -149,6 +165,18 @@ p
     
 }
 
+#ModeButton
+{
+    /*Dimension*/
+    width: 22rem;
+    height: 10rem;
+
+    /*Asethetics*/
+    background: white;
+    border: solid gray 0.2rem;
+    border-radius: 10px;
+    font-size: 3rem;
+}
 
 
 

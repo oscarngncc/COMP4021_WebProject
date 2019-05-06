@@ -1,3 +1,5 @@
+
+
 /* true if the block player previously controlled reaches to the bottom/another block*/
 var isSettled = true;
 
@@ -7,10 +9,7 @@ var yPos = 0;
 var OptionValue = 0;
 var Rotation = 0;
 
-/* 10 x 8 2-Dimensional Matrix Canvas 
-    with DOM "TetrisBlock" element inside if yes,
-    null otherwise 
-*/
+/* 10 x 8 2-Dimensional Matrix Canvas with actual DOM object*/
 var Canvas = new Array(10);
 for ( var i = 0; i < 10; i++)
 {
@@ -21,10 +20,41 @@ for ( var i = 0; i < 10; i++)
 //Timer
 var Timer;
 
+//Color Array
+var colorlist = ["blue", "red", "yellow", "orange", "green", "purple"];
 
 /* User Accessible Variables here*/
 var UserControlBlocks = [];
 var CurrentOptions;
+
+
+/* Predict Next Tetris Here */
+var NextOptionValue = getRandomValue();
+var NextOptions = getOption(NextOptionValue);
+var NextColor = colorlist[ Math.floor( Math.random() * colorlist.length ) ];
+
+
+/*  @@@@@@@@@@@@@@@@ Special Mode Activiated @@@@@@@@@@@@@ */
+var SpecialMode = true;
+/* BlockList for calculating radius */
+var BlockList = [   "url(\"Amber.png\")", 
+                    "url(\"Diamond.png\")",
+                    "url(\"Gold.png\")",
+                    "url(\"Ice.png\")",
+                    "url(\"TNT.png\")"
+                ];
+
+// 1 for TNT, 2 for Ice, 0 otherwise (normal)                
+var SpecialBlock = 0;
+var NextSpecialBlock = Math.floor( Math.random() * BlockList.length);
+
+/* Apply Impact If Special Mode */
+if ( SpecialMode )
+{
+    NextColor = BlockList[  NextSpecialBlock ];
+} else { NextSpecialBlock = 0; }
+
+/*  @@@@@@@@@@@@@@@@ Special Mode Activiated @@@@@@@@@@@@@ */
 
 
 
@@ -47,14 +77,14 @@ function CanvasMoveBlock( Dimension, Distance )
     //It may already be settled, but not updated yet
     if ( TxPos >= 9 )
     {  
-        isSettled = true; 
+        isSettled = true;
         return false;
     }
     for ( var j = 0; j < getColumnLength(CurrentOptions); j++ )
     {
         if ( Canvas[TxPos+1][ yPos+j] != null && Canvas[TxPos][ yPos+ j] != null )
         {  
-            isSettled = true; 
+            isSettled = true;
             return false; 
         }
     }
@@ -74,7 +104,6 @@ function CanvasMoveBlock( Dimension, Distance )
     var MovedyPos = ( Dimension != 0 )? yPos + Distance: yPos;
 
     
-
     //Check If movable to the position
     var canMove = true;
     for ( var i = 0; i < getRowLength(CurrentOptions); i++ )
@@ -133,8 +162,7 @@ function CanvasMoveBlock( Dimension, Distance )
         yPos = MovedyPos;
 
         return true;
-    }
-    
+    }   
     return false;   
 }
 
@@ -251,8 +279,29 @@ function CreateBlock()
         //Create new Block
         var GameArea = document.getElementById("GameArea");
 
-        OptionValue = getRandomValue();
-        CurrentOptions = getOption(OptionValue); //Return a Two-Dimensional Integer Array
+        //OptionValue = getRandomValue();
+        //CurrentOptions = getOption(OptionValue); //Return a Two-Dimensional Integer Array
+        OptionValue = NextOptionValue;
+        CurrentOptions = getOption(OptionValue);
+        NextOptionValue = getRandomValue();
+        NextOptions = getOption(NextOptionValue);
+        
+
+        //Choose Color
+        var color = NextColor;
+        NextColor = colorlist[ Math.floor( Math.random() * colorlist.length ) ];
+
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        SpecialBlock = NextSpecialBlock;
+        if ( SpecialMode )
+        {
+            var Index = Math.floor( Math.random() * BlockList.length ); 
+            NextColor = BlockList[Index];
+            if ( Index == 4 ){ NextSpecialBlock = 1; }
+            else if ( Index == 3 ){ NextSpecialBlock = 2; }
+            else { NextSpecialBlock = 0; } 
+        }
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
         for ( var i = 0; i < 4; i++ )
         {
@@ -264,6 +313,7 @@ function CreateBlock()
                     block.setAttribute("class", "TetrisBlock UserControlBlock");
                     block.style.top = (5 + (xPos+i)*5).toString() + "rem"; 
                     block.style.left = (0 + (yPos+j)*5 + 20 ).toString() + "rem";
+                    block.style.background = color;
 
                     GameArea.appendChild(block);   //Add to Web Interface
                     UserControlBlocks.push(block); //Label Block as User Controllable
@@ -272,6 +322,21 @@ function CreateBlock()
                 }
             }
         }
+
+        /* Forsee Next Tetris Block */
+        for ( var i = 0; i < 4; i++ )
+        {
+            for ( var j = 0; j < 4; j++ )
+            {
+                if ( NextOptions[i][j] == 0 )
+                { $("#NextBlockDiv").children().eq(i*4+j).css("display", "none");  }
+                else 
+                { $("#NextBlockDiv").children().eq(i*4+j).css("display", "inline");  }
+                
+                $("#NextBlockDiv").children().eq(i*4+j).css("background", NextColor);
+            }
+        }
+
         console.log("creation");
         isSettled = false; 
     }              
@@ -317,7 +382,7 @@ function CheckRowCondition()
                     {
                         Canvas[a].splice( b, 1, null );
                         Canvas[a+1].splice( b, 1, block );
-                        block.style.top = (5 + (a+1)*5).toString() + "rem";   
+                        block.style.top = (5 + (a+1)*5).toString() + "rem";
                     }                              
                 }
             }
