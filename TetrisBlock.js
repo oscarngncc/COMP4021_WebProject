@@ -1,68 +1,229 @@
 
 var TetrisBlocksOption = [];
 
-var Option0 = [ [1, 1, 1, 1 ],
+var Option0List =[ 
+                [ 
+                [1, 1, 1, 1 ],
                 [0, 0, 0, 0 ],
                 [0, 0, 0, 0 ],
                 [0, 0, 0, 0 ],
-              ];
-TetrisBlocksOption.push(Option0);
+                ],
+
+                [ 
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                ],
+
+                [ 
+                [1, 1, 1, 1 ],
+                [0, 0, 0, 0 ],
+                [0, 0, 0, 0 ],
+                [0, 0, 0, 0 ],
+                ],
+
+                [ 
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                ]
+            ]
+TetrisBlocksOption.push(Option0List);
 
 
-var Option1 = [ [0, 1, 1, 0 ],
-                [1, 1, 0, 0 ],
-                [0, 0, 0, 0 ],
-                [0, 0, 0, 0 ],
-              ];
-TetrisBlocksOption.push(Option1);
+var Option1List = [
+                [ 
+                    [0, 1, 1, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [ 
+                    [1, 0, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [ 
+                    [0, 1, 1, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [ 
+                    [1, 0, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ]
+            ];
+TetrisBlocksOption.push(Option1List);
 
 
-var Option2 = [ [0, 1, 0, 0 ],
+var Option2List =[
+                [ 
+                    [0, 1, 0, 0 ],
+                    [1, 1, 1, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [ 
+                    [1, 0, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [1, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [ 
+                    [1, 1, 1, 0 ],
+                    [0, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [ 
+                    [0, 0, 1, 0 ],
+                    [0, 1, 1, 0 ],
+                    [0, 0, 1, 0 ],
+                    [0, 0, 0, 0 ],
+                ]
+            ];
+TetrisBlocksOption.push(Option2List);
+
+
+var Option3List =[
+                [
+                    [1, 1, 0, 0 ],
+                    [0, 1, 1, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [
+                    [0, 1, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [1, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [
+                    [1, 1, 0, 0 ],
+                    [0, 1, 1, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [
+                    [0, 1, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [1, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ]
+            ];
+TetrisBlocksOption.push(Option3List);
+
+
+var Option4List = [
+                [
+                    [1, 1, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [
+                    [1, 1, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [
+                    [1, 1, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ],
+
+                [
+                    [1, 1, 0, 0 ],
+                    [1, 1, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                    [0, 0, 0, 0 ],
+                ]
+              ]
+TetrisBlocksOption.push(Option4List);
+
+
+var Option5List =[
+              [
+                [0, 0, 1, 0 ],
                 [1, 1, 1, 0 ],
                 [0, 0, 0, 0 ],
                 [0, 0, 0, 0 ],
-              ];
-TetrisBlocksOption.push(Option2);
+              ],
+
+              [
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                [1, 1, 0, 0 ],
+                [0, 0, 0, 0 ],
+              ],
+
+              [
+                [1, 1, 1, 0 ],
+                [1, 0, 0, 0 ],
+                [0, 0, 0, 0 ],
+                [0, 0, 0, 0 ],
+              ],
+
+              [
+                [0, 1, 1, 0 ],
+                [0, 0, 1, 0 ],
+                [0, 0, 1, 0 ],
+                [0, 0, 0, 0 ],
+              ]
+            ]
+TetrisBlocksOption.push(Option5List);
 
 
-var Option3 = [ [1, 1, 0, 0 ],
+var Option6List =[
+              [ 
+                [1, 0, 0, 0 ],
+                [1, 1, 1, 0 ],
+                [0, 0, 0, 0 ],
+                [0, 0, 0, 0 ],
+              ],
+
+              [ 
+                [1, 1, 0, 0 ],
+                [1, 0, 0, 0 ],
+                [1, 0, 0, 0 ],
+                [0, 0, 0, 0 ],
+              ],
+
+              [ 
+                [1, 1, 1, 0 ],
+                [0, 0, 1, 0 ],
+                [0, 0, 0, 0 ],
+                [0, 0, 0, 0 ],
+              ],
+
+              [ 
+                [0, 0, 1, 0 ],
+                [0, 0, 1, 0 ],
                 [0, 1, 1, 0 ],
                 [0, 0, 0, 0 ],
-                [0, 0, 0, 0 ],
-              ];
-TetrisBlocksOption.push(Option3);
+              ],
+            ];
+TetrisBlocksOption.push(Option6List);
 
-
-var Option4 = [ [1, 1, 0, 0 ],
-                [1, 1, 0, 0 ],
-                [0, 0, 0, 0 ],
-                [0, 0, 0, 0 ],
-              ];
-TetrisBlocksOption.push(Option4);
-
-
-var Option5 = [ [0, 0, 1, 0 ],
-                [1, 1, 1, 0 ],
-                [0, 0, 0, 0 ],
-                [0, 0, 0, 0 ],
-              ];
-TetrisBlocksOption.push(Option5);
-
-
-var Option6 = [ [1, 0, 0, 0 ],
-                [1, 1, 1, 0 ],
-                [0, 0, 0, 0 ],
-                [0, 0, 0, 0 ],
-              ];
-TetrisBlocksOption.push(Option6);
-
-
-var Option7 =  [ [1, 1, 1, 1 ],
-                 [1, 1, 1, 1 ],
-                 [1, 0, 0, 1 ],
-                 [1, 1, 1, 1 ],
-                ];
-//TetrisBlocksOption.push(Option7);
 
 
 
@@ -97,12 +258,23 @@ function getRowLength(Option)
     return LongestLength + 1;
 }
 
-
-
-function getRandomOption()
+function getRandomValue()
 {
-    var OptionValue = Math.floor( Math.random() * TetrisBlocksOption.length );
-    return TetrisBlocksOption[OptionValue];
+    return Math.floor( Math.random() * TetrisBlocksOption.length );
 }
+
+function getOptionList(value)
+{
+    return TetrisBlocksOption[value];
+}
+
+function getOption(value, Rotation=0)
+{
+    return TetrisBlocksOption[value][Rotation];
+}
+
+
+
+
 
 
