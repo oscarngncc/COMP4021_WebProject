@@ -1,3 +1,14 @@
+<?php
+if( isset( $_COOKIE['highestScore'] ) ) 
+{ } 
+else 
+{ 
+    setcookie("highestScore","no_record");    
+    header("Location:Main.php");
+} 
+?>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -33,7 +44,8 @@
 
             /*Function Called for each timer iteration, Bascially Sum up everything*/
             function IterationFunc()
-            {               
+            {
+                
                 CanvasMoveBlock( 0, 1 ); //User-Controlled Block will drop each time interval
                 CheckRowCondition();
                 
@@ -43,10 +55,31 @@
                     if ( Canvas[0][i] != null ){ 
                         isSettled = true;
                         clearTimeout(Timer);
-                        alert("GAMEOVER"); 
+                        alert("GAMEOVER");
+                        
+                        
+                        var score=$("#score").text();
+                          var x=document.cookie;
+                        var split_read_cookie = x.split(";");
+                        for (i=0;i<split_read_cookie.length;i++){
+                            
+                        var value=split_read_cookie[i];
+
+                        value=value.split("=");
+                            
+                        if((value[0]==" highestScore"&&value[1]<score)||(value[0]==" highestScore"&&value[1]=="no_record")){
+                            var name=prompt("Please enter your name");
+                            document.cookie = 'highestScore='+score+"; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+
+                            document.cookie = 'hname='+name+"; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                            $("#hscore").text(score);
+                            $("#hname").text(" by "+name);
+                        }}
+                        
                         return;
                     }
                 }
+
                 CreateBlock();
                 Timer = setTimeout(IterationFunc, 500);
             }
@@ -57,7 +90,11 @@
         <div id="Game">
             <div id = "Board1" class = "GameDataBoard">
                 <p>Next Block Dropping:</p>
-                <p>Score: 20000</p>
+                <p>Score: <span id="score">0</span></p>
+                <p>Highest Score:<BR><span id="hscore"><?=
+                $_COOKIE["highestScore"]; ?></span><span id="hname">
+                <?php if(isset($_COOKIE['hname'])){echo "by ".$_COOKIE['hname'];} ?>   
+                </span></p>
             </div>
             <div id = "GameArea">
                 <div id="BorderLine"></div>

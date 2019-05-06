@@ -105,7 +105,9 @@ p
     width:40rem;
 
     /*Aesthetics*/
-    background: brown;
+    background: url("Land.png");
+    background-size: 100% 100%;
+    border-radius: 1rem;
 }
 
 
