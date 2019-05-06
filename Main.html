@@ -34,6 +34,7 @@
             /*Timer*/
             var Timer;
 
+
             
             /* Helper Function for Changing position of elements inside Canvas, Parameters:
                Dimension - 0 which is x position, 1 which is y position
@@ -82,6 +83,8 @@
             }
 
 
+
+
             function CreateBlock()
             {
                 if ( isSettled )
@@ -111,6 +114,8 @@
                     isSettled = false; 
                 }              
             }
+
+
 
 
             function CheckRowCondition()
@@ -155,6 +160,7 @@
 
 
 
+
             /*Function Called for each timer iteration, Bascially Sum up everything*/
             function IterationFunc()
             {
@@ -175,6 +181,8 @@
                 CreateBlock();
                 Timer = setTimeout(IterationFunc, 500);
             }
+
+
 
 
             function Main()
