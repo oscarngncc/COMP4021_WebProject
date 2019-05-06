@@ -140,6 +140,10 @@ p
     background: red;
     border: solid white 0.1rem;
     border-radius: 7px;
+
+    /*Animation*/
+    transition: left 0.25s;
+    transition: top 0.25s;
     
 }
 
