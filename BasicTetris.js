@@ -251,8 +251,7 @@ function CreateBlock()
         //Create new Block
         var GameArea = document.getElementById("GameArea");
 
-        //OptionValue = getRandomValue();
-        OptionValue = 5;
+        OptionValue = getRandomValue();
         CurrentOptions = getOption(OptionValue); //Return a Two-Dimensional Integer Array
 
         for ( var i = 0; i < 4; i++ )
@@ -322,6 +321,9 @@ function CheckRowCondition()
                     }                              
                 }
             }
+            var score=parseInt($("#score").text());
+            score += 100;
+            $("#score").text(score);
             i++;
         }
     }

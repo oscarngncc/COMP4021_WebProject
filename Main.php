@@ -59,7 +59,7 @@ else
                         
                         
                         var score=$("#score").text();
-                          var x=document.cookie;
+                        var x=document.cookie;
                         var split_read_cookie = x.split(";");
                         for (i=0;i<split_read_cookie.length;i++){
                             
