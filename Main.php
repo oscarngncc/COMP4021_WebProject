@@ -22,13 +22,21 @@ else
         <script src="SpecialTetris.js"></script>
     </head>
 
-    <body onload="Main()">
+    <body>
         <!--Script Goes here-->
         <script>
             var IterationTime = 500;
             var difficulty = 1;
 
             function Main()
+            {
+                $("#StartPage").fadeOut(300);
+                $("#Button1").css("display", "none");
+                $("#Button2").css("display", "none");
+                Start();
+            }
+
+            function Start()
             {
                 Timer = setTimeout(IterationFunc, 500);
 
@@ -47,8 +55,20 @@ else
 
             function ChangeMode()
             {
-                if ( SpecialMode ){ SpecialMode = false; }
-                else { SpecialMode = true;}
+                if ( SpecialMode )
+                { 
+                    NextOptionValue = getRandomValue();
+                    NextOptions = getOption(NextOptionValue);
+                    NextColor = colorlist[ Math.floor( Math.random() * colorlist.length ) ]
+                    SpecialMode = false; 
+                }
+                else
+                 { 
+                    Index = Math.floor( Math.random() * BlockList.length);
+                    if ( Index >= 3){ Index = 2; }
+                    NextColor = BlockList[ Index ];
+                    SpecialMode = true;
+                }
 
                 var CurrentModep = document.getElementById("CurrentMode");
                 if (SpecialMode ){CurrentModep.innerHTML = "Special Mode"; }
@@ -68,10 +88,14 @@ else
                 for ( var i = 0; i < 8; i++ )
                 {
                     if ( Canvas[0][i] != null ){ 
+                        
                         isSettled = true;
                         clearTimeout(Timer);
-                        alert("GAMEOVER");
+
+                        $("#BigText").text("You Failed, Better Luck Next Time! ");
+                        $("#StartPage").fadeIn(1200);
                         
+                    
                         
                         var score=$("#score").text();
                         var x=document.cookie;
@@ -114,7 +138,13 @@ else
 
         </script>
         <!--Script Ends here-->
-
+        <div id="StartPage">
+            <div id = "MiddleSection">
+                <h2 id="BigText">Select Which Mode Do You Want to Play</h2>
+                <button class="ModeButton" id="Button1" onclick="Main()" >Special Mode</Button>
+                <button class="ModeButton" id="Button2" onclick="ChangeMode(); Main();">Normal Mode</Button>
+            </div>
+        </div>
         <div id="Game">
             <div id = "Board1" class = "GameDataBoard">
                 <p>Next Block Dropping:</p>
@@ -150,7 +180,7 @@ else
             <div id="Board2" class = "GameDataBoard">
                 <p>You are Now Playing</p>
                 <p id="CurrentMode" style="color:yellow; font-size: 4rem;">Special Mode</p>
-                <button id="ModeButton" onclick="ChangeMode()">Toggle Mode</button>                
+                <button class="ModeButton" onclick="ChangeMode()">Toggle Mode</button>                
                 <p id="Level">Level 1</p>
 
                 <div id="description">

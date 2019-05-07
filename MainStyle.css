@@ -168,7 +168,7 @@ p
     
 }
 
-#ModeButton
+.ModeButton
 {
     /*Dimension*/
     width: 22rem;
@@ -191,4 +191,37 @@ p
 }
 
 
+
+/**************************************************/
+#StartPage
+{
+    z-index: 100;
+    display: default;
+    
+    /*Dimension*/
+    height: 100vh;
+    width: 100vw;
+
+    /*Asethetics*/
+    background-color: rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+#MiddleSection
+{
+    position: relative;
+    left: 15vw;
+    top: 20vh;
+
+    height: 70vh;
+    width: 70vw;
+}
+
+h2
+{
+    position: relative;
+
+    font-size: 5.7vw;
+    color: white;
+}
 
