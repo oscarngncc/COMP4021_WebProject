@@ -25,6 +25,9 @@ else
     <body onload="Main()">
         <!--Script Goes here-->
         <script>
+            var IterationTime = 500;
+            var difficulty = 1;
+
             function Main()
             {
                 Timer = setTimeout(IterationFunc, 500);
@@ -91,9 +94,22 @@ else
                         return;
                     }
                 }
+
+                //Check Level Difficulty
+                var score=parseInt($("#score").text());
+                if ( difficulty != Math.floor(score/500) + 1 )
+                {
+                    difficulty = Math.floor(score/500) + 1;
+                    IterationTime = 500 - (difficulty-1)*50;
+                    var Level = document.getElementById("Level");
+                    var LevelTest = "Level " + difficulty.toString();
+                    Level.innerHTML = LevelTest ;
+                }
+                
+
                 
                 CreateBlock();
-                Timer = setTimeout(IterationFunc, 500);
+                Timer = setTimeout(IterationFunc, IterationTime);
             }
 
         </script>
@@ -133,10 +149,17 @@ else
             </div>
             <div id="Board2" class = "GameDataBoard">
                 <p>You are Now Playing</p>
-                <p id="CurrentMode" style="color:yellow; font-size: 4rem;">Normal Mode</p>
-                <button id="ModeButton" onclick="ChangeMode()">Toggle Mode</button>
-                
+                <p id="CurrentMode" style="color:yellow; font-size: 4rem;">Special Mode</p>
+                <button id="ModeButton" onclick="ChangeMode()">Toggle Mode</button>                
                 <p id="Level">Level 1</p>
+
+                <div id="description">
+                    <p style="top: 4rem"> Instructions of Special Mode: </p>
+                    <div class="TetrisBlock" style="background: url(TNT.png); position: relative; display: inline-block; "></div>
+                    <p style="top: 4rem"> TNT which will explode upon contact </p>
+                    <div class="TetrisBlock" style="background: url(Ice.png); position: relative; display: inline-block; "></div>
+                    <p style="top: 4rem"> Ice which will melt as time flies </p>
+                </div>
             </div>
         </div>
 
