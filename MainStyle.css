@@ -9,6 +9,7 @@ html
 {
     /*Base font-size for rem, 1 rem = 8px */
     font-size: 8px;
+    overflow: hidden;
 }
 
 body
@@ -38,7 +39,9 @@ body
     margin: 1rem;
 
     /*Aesthetics*/
-    background: linear-gradient( darkblue, blue); 
+    /* background: linear-gradient( darkblue, blue); */
+    background: rgba(0,0,139,0.8);
+    background-size: 100% 100%;
     border-radius: 1.5rem;
     border: solid white 0.5rem;
 }
@@ -178,6 +181,14 @@ p
     font-size: 3rem;
 }
 
+
+#Level
+{
+    top:3rem; 
+    font-size: 4rem;
+    border: solid white 0.5rem;
+    border-radius: 1rem;
+}
 
 
 

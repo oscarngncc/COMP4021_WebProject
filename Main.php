@@ -15,7 +15,6 @@ else
         <title>Special Tetris Game</title>
         <meta charset="utf-8"/>
         <link href="MainStyle.css" rel="stylesheet" type="text/css">
-        <link href="Responsive.css" rel="stylesheet" type="text/css">
         <meta name="viewport" content="width=device-width, initial-scale=1" >
         <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="TetrisBlock.js"></script>
@@ -45,15 +44,22 @@ else
 
             function ChangeMode()
             {
-                alert("JOJO");
+                if ( SpecialMode ){ SpecialMode = false; }
+                else { SpecialMode = true;}
+
+                var CurrentModep = document.getElementById("CurrentMode");
+                if (SpecialMode ){CurrentModep.innerHTML = "Special Mode"; }
+                else { CurrentModep.innerHTML="Normal Mode";}
             }
 
             /*Function Called for each timer iteration, Bascially Sum up everything*/
             function IterationFunc()
             {
-                CanvasMoveBlock( 0, 1 ); //User-Controlled Block will drop each time interval                
+                CanvasMoveBlock( 0, 1 ); //User-Controlled Block will drop each time interval
+                IceBreak();                
                 Boom();
                 CheckRowCondition();
+                
                 
                 //Check GameOver                
                 for ( var i = 0; i < 8; i++ )
@@ -129,6 +135,8 @@ else
                 <p>You are Now Playing</p>
                 <p id="CurrentMode" style="color:yellow; font-size: 4rem;">Normal Mode</p>
                 <button id="ModeButton" onclick="ChangeMode()">Toggle Mode</button>
+                
+                <p id="Level">Level 1</p>
             </div>
         </div>
 

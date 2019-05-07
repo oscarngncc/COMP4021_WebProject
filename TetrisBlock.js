@@ -225,6 +225,39 @@ var Option6List =[
 TetrisBlocksOption.push(Option6List);
 
 
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@  Special 
+var SpOptionList =[
+    [ 
+      [1, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+    ],
+
+    [ 
+      [1, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+    ],
+
+    [ 
+      [1, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+    ],
+
+    [ 
+      [1, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+      [0, 0, 0, 0 ],
+    ],
+  ];
+//@@@@@@@@@@@@@@@@@@@@@@@@@@@  Special 
+
+
 
 
 function getColumnLength(Option)
@@ -265,11 +298,13 @@ function getRandomValue()
 
 function getOptionList(value)
 {
+    if (value == 999){ return SpOptionList; }
     return TetrisBlocksOption[value];
 }
 
 function getOption(value, Rotation=0)
 {
+    if (value == 999){ return SpOptionList[Rotation]; }
     return TetrisBlocksOption[value][Rotation];
 }
 

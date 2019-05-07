@@ -27,12 +27,10 @@ var colorlist = ["blue", "red", "yellow", "orange", "green", "purple"];
 var UserControlBlocks = [];
 var CurrentOptions;
 
-
 /* Predict Next Tetris Here */
 var NextOptionValue = getRandomValue();
 var NextOptions = getOption(NextOptionValue);
 var NextColor = colorlist[ Math.floor( Math.random() * colorlist.length ) ];
-
 
 /*  @@@@@@@@@@@@@@@@ Special Mode Activiated @@@@@@@@@@@@@ */
 var SpecialMode = true;
@@ -46,15 +44,20 @@ var BlockList = [   "url(\"Amber.png\")",
 
 // 1 for TNT, 2 for Ice, 0 otherwise (normal)                
 var SpecialBlock = 0;
-var NextSpecialBlock = Math.floor( Math.random() * BlockList.length);
+var NextSpecialBlock = 0;
+
 
 /* Apply Impact If Special Mode */
 if ( SpecialMode )
 {
-    NextColor = BlockList[  NextSpecialBlock ];
+    Index = Math.floor( Math.random() * BlockList.length);
+    if ( Index >= 3){ Index = 2; }
+    NextColor = BlockList[ Index ];
 } else { NextSpecialBlock = 0; }
-
 /*  @@@@@@@@@@@@@@@@ Special Mode Activiated @@@@@@@@@@@@@ */
+
+
+
 
 
 
@@ -104,6 +107,7 @@ function CanvasMoveBlock( Dimension, Distance )
     var MovedyPos = ( Dimension != 0 )? yPos + Distance: yPos;
 
     
+
     //Check If movable to the position
     var canMove = true;
     for ( var i = 0; i < getRowLength(CurrentOptions); i++ )
@@ -279,8 +283,7 @@ function CreateBlock()
         //Create new Block
         var GameArea = document.getElementById("GameArea");
 
-        //OptionValue = getRandomValue();
-        //CurrentOptions = getOption(OptionValue); //Return a Two-Dimensional Integer Array
+        
         OptionValue = NextOptionValue;
         CurrentOptions = getOption(OptionValue);
         NextOptionValue = getRandomValue();
@@ -297,8 +300,17 @@ function CreateBlock()
         {
             var Index = Math.floor( Math.random() * BlockList.length ); 
             NextColor = BlockList[Index];
-            if ( Index == 4 ){ NextSpecialBlock = 1; }
-            else if ( Index == 3 ){ NextSpecialBlock = 2; }
+            // Indicating a Bomb is going to explode here
+            if ( Index >= 4 ){
+                NextSpecialBlock = 1;
+                NextOptionValue = 999;
+                NextOptions = getOption(NextOptionValue); 
+            }
+            // Indicating ice blocks are going to be created
+            else if ( Index == 3 )
+            {
+                NextSpecialBlock = 2; 
+            }
             else { NextSpecialBlock = 0; } 
         }
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
